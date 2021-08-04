@@ -1,0 +1,8 @@
+---
+title: "Using Scientific Format Functions"
+author: "Christy Pickering"
+date: "8/4/2021"
+output: html_document
+---
+
+
