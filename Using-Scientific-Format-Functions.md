@@ -3,6 +3,8 @@ Using Scientific Format Functions
 Christy Pickering
 2021-08-06
 
+  - [`to_scientific()` Function](#to_scientific-function)
+
 Here I discuss three functions I wrote to convert numbers to
 customizable scientific format for ggplot axis labels, annotations,
 legend labels, etc. I also provide examples of how to use each function.
@@ -12,7 +14,7 @@ Source code containing the described functions is located
 
 # `to_scientific()` Function
 
-## `to_scientific()` Inputs:
+## Inputs
 
   - `x` = the number or vector of numbers to be converted into
     scientific format
@@ -24,7 +26,7 @@ Source code containing the described functions is located
     scientific format (inclusive)
   - `units` = if specified, adds units to the converted output
 
-## `to_scientific()` Output:
+## Output
 
   - Outputs numbers between `min_cut` and `max_cut` as expressions of
     plain numbers, with `units` if given
@@ -35,7 +37,7 @@ Expressions are used because R or `ggplot` can parse the expressions to
 display formatted numbers. `NA` values are preserved because `ggplot`
 often uses `NA` when the axis limits are not specified.
 
-## `to_scientific()` Function Code:
+## Function Code
 
 ``` r
 to_scientific <- function(x,
