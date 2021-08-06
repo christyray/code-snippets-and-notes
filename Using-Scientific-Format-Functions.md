@@ -1,34 +1,43 @@
----
-title: "Using Scientific Format Functions"
-author: "Christy Pickering"
-date: "`r format(Sys.Date())`"
-output: github_document
----
+Using Scientific Format Functions
+================
+Christy Pickering
+2021-08-06
 
-Here I discuss three functions I wrote to convert numbers to customizable scientific format for ggplot axis labels, annotations, legend labels, etc. I also provide examples of how to use each function. 
+Here I discuss three functions I wrote to convert numbers to
+customizable scientific format for ggplot axis labels, annotations,
+legend labels, etc. I also provide examples of how to use each function.
 
-Source code containing the described functions is located [here](Code/scientific_conversion.R). 
+Source code containing the described functions is located
+[here](Code/scientific_conversion.R).
 
 # `to_scientific()` Function
 
 ## `to_scientific()` Inputs:
 
-* `x` = the number or vector of numbers to be converted into scientific format
-* `digits` = the number of significant figures to display in the converted output
-* `max_cut` = above this number, values will be converted into scientific format (inclusive)
-* `min_cut` = below this number, values will be converted into scientific format (inclusive)
-* `units` = if specified, adds units to the converted output
+  - `x` = the number or vector of numbers to be converted into
+    scientific format
+  - `digits` = the number of significant figures to display in the
+    converted output
+  - `max_cut` = above this number, values will be converted into
+    scientific format (inclusive)
+  - `min_cut` = below this number, values will be converted into
+    scientific format (inclusive)
+  - `units` = if specified, adds units to the converted output
 
 ## `to_scientific()` Output:
 
-* Outputs numbers between `min_cut` and `max_cut` as expressions of plain numbers, with `units` if given 
-* Outputs numbers less than `min_cut` or greater than `max_cut` as expressions with numbers in scientific format, with `units` if given
+  - Outputs numbers between `min_cut` and `max_cut` as expressions of
+    plain numbers, with `units` if given
+  - Outputs numbers less than `min_cut` or greater than `max_cut` as
+    expressions with numbers in scientific format, with `units` if given
 
-Expressions are used because R or `ggplot` can parse the expressions to display formatted numbers. `NA` values are preserved because `ggplot` often uses `NA` when the axis limits are not specified. 
+Expressions are used because R or `ggplot` can parse the expressions to
+display formatted numbers. `NA` values are preserved because `ggplot`
+often uses `NA` when the axis limits are not specified.
 
 ## `to_scientific()` Function Code:
 
-```{r}
+``` r
 to_scientific <- function(x,
                           digits = 2,
                           max_cut = 10^5,
