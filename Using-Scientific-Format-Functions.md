@@ -376,7 +376,7 @@ base_plot <- ggplot(ternary, aes(x = Ab, y = kon, fill = Max)) +
 base_plot
 ```
 
-<img src="Using-Scientific-Format-Functions_files/figure-gfm/base-plot-1.svg" width="80%" />
+<img src="Figures/Scientific-Format/base-plot-1.svg" width="80%" />
 
 Next, we will use functions from the `scales` package to correct the x
 and y axes to accurately reflect the underlying data. The
@@ -406,7 +406,7 @@ scales_plot <- ggplot(ternary, aes(x = Ab, y = kon, fill = Max)) +
 scales_plot
 ```
 
-<img src="Using-Scientific-Format-Functions_files/figure-gfm/scales-plot-1.svg" width="80%" />
+<img src="Figures/Scientific-Format/scales-plot-1.svg" width="80%" />
 
 We can then use the `label_scientific()` function to modify the heat map
 legend to show the complexes per cell in scientific notation. No input
@@ -438,7 +438,7 @@ sci_plot <- ggplot(ternary, aes(x = Ab, y = kon, fill = Max)) +
 sci_plot
 ```
 
-<img src="Using-Scientific-Format-Functions_files/figure-gfm/sci-plot-1.svg" width="80%" />
+<img src="Figures/Scientific-Format/sci-plot-1.svg" width="80%" />
 
 Initially, calling `label_scientific()` changed nothing about the heat
 map legend – why? Because the default value for `max_cut` is \(10^5\),
@@ -471,7 +471,7 @@ sci_plot2 <- ggplot(ternary, aes(x = Ab, y = kon, fill = Max)) +
 sci_plot2
 ```
 
-<img src="Using-Scientific-Format-Functions_files/figure-gfm/sci-plot2-1.svg" width="80%" />
+<img src="Figures/Scientific-Format/sci-plot2-1.svg" width="80%" />
 
 By specifying a much smaller maximum cutoff with `max_cut`, we have made
 the heat map legend display with scientific notation. Now, we can modify
@@ -516,7 +516,7 @@ sci_plot3 <- ggplot(ternary, aes(x = Ab, y = kon, fill = Max)) +
 sci_plot3
 ```
 
-<img src="Using-Scientific-Format-Functions_files/figure-gfm/sci-plot3-1.svg" width="80%" />
+<img src="Figures/Scientific-Format/sci-plot3-1.svg" width="80%" />
 
 If desired, we can also use the `common = TRUE` argument to specify a
 common exponential factor for all of the numbers in scientific notation.
@@ -551,7 +551,7 @@ sci_plot4 <- ggplot(ternary, aes(x = Ab, y = kon, fill = Max)) +
 sci_plot4
 ```
 
-<img src="Using-Scientific-Format-Functions_files/figure-gfm/sci-plot4-1.svg" width="80%" />
+<img src="Figures/Scientific-Format/sci-plot4-1.svg" width="80%" />
 
 # References and Resources
 
