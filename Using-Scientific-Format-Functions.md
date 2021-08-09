@@ -102,7 +102,3 @@ to_scientific <- function(x,
   x <- parse(text = x)
 }
 ```
-
-## Link to Render LaTeX expressions
-
-<https://github.com/nschloe/purple-pi?activate>
