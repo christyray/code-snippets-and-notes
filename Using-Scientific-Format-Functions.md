@@ -34,6 +34,7 @@ the `ggplot` scale function labels to scientific format.
     scientific format (inclusive)
   - `common` = specifies if scientific format numbers should share a
     common exponential factor
+  - `trailing` = specifies if trailing zeros should be included
   - `units` = if specified, adds units to the converted output
 
 ## Output
@@ -68,6 +69,7 @@ to_scientific <- function(x,
                           max_cut = 10^5,
                           min_cut = 10^-3,
                           common = FALSE,
+                          trailing = TRUE,
                           units = NULL) {
   
   # Convert input to consistent number format
@@ -161,9 +163,11 @@ to_scientific <- function(x,
   
   # Convert scientific notation into a math expression
   # First, wrap the significand in quotes to preserve trailing zeros
-  # Match pattern of any characters at the start of the string prior to e;
-  # replace with the matched characters wrapped in quotes followed by e
-  x <- gsub(pattern = "(^.*)e", replacement = "'\\1'e", x)
+  if (trailing) {
+    # Match pattern of any characters at the start of the string prior to e;
+    # replace with the matched characters wrapped in quotes followed by e
+    x <- gsub(pattern = "(^.*)e", replacement = "'\\1'e", x)
+  }
   
   # Next, replace the "e+00" notation with math expression for "x 10^0"
   # Match pattern of e + or - 0 (one or zero 0s); replace with x 10^+ or -
@@ -219,6 +223,7 @@ in the [`scales` package](https://scales.r-lib.org/reference/index.html)
     scientific format (inclusive)
   - `common` = specifies if scientific format numbers should share a
     common exponential factor
+  - `trailing` = specifies if trailing zeros should be included
   - `units` = if specified, adds units to the converted output
 
 ## Output
@@ -235,6 +240,7 @@ label_scientific <- function(digits = 2,
                              max_cut = 10^5,
                              min_cut = 10^-3,
                              common = FALSE,
+                             trailing = TRUE,
                              units = NULL) {
   
   # Defines a new function that takes x as input, but x was not input into the
@@ -249,6 +255,7 @@ label_scientific <- function(digits = 2,
       max_cut = max_cut,
       min_cut = min_cut,
       common = common,
+      trailing = trailing,
       units = units
     )
   }
