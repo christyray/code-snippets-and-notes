@@ -27,7 +27,9 @@ Source code containing the described functions is located [here](Code/scientific
 * Outputs numbers between `min_cut` and `max_cut` as expressions of plain numbers, with `units` if given 
 * Outputs numbers less than `min_cut` or greater than `max_cut` as expressions with numbers in scientific format, with `units` if given
 
-Expressions are used because R or `ggplot` can parse the expressions to display formatted numbers. `NA` values are preserved because `ggplot` often uses `NA` when the axis limits are not specified. 
+Outputs are formatted as expressions because R or `ggplot` can parse the expressions to display formatted numbers. `NA` values are preserved because `ggplot` often uses `NA` when the axis limits are not specified. 
+
+Note: Inputs are rounded before checking if they are in the range for conversion to scientific format; e.g., $99999$ will be rounded to $1 \times 10^5$, so if the cutoff is $1 \times 10^5$, it will get converted to scientific format. 
 
 ## Function Code
 
@@ -50,7 +52,7 @@ to_scientific <- function(x,
   }
 
   # Select numbers in between min_cut and max_cut and round to specified
-  # number of digits
+  # number of digits (not scientific format)
   x[abs(x) < max_cut & abs(x) > min_cut] <- signif(
     x[abs(x) < max_cut & abs(x) > min_cut],
     digits = digits
@@ -58,6 +60,7 @@ to_scientific <- function(x,
 
   # Select numbers outside of range and convert numbers into characters
   # in consistent scientific format
+  # formatC converts to 0.00e+00 format; digits argument gives digits after decimal
   x[abs(x) >= max_cut | abs(x) <= min_cut] <- formatC(
     x[abs(x) >= max_cut | abs(x) <= min_cut],
     format = "e", digits = digits - 1
@@ -65,20 +68,22 @@ to_scientific <- function(x,
 
   # Replace scientific format zeros with plain zeros
   pattern <- paste(rep(0, digits - 1), sep = "", collapse = "")
-  pattern <- paste0("0.", pattern, "e+00")
+  pattern <- paste0("0.", pattern, "e+00")    # Creates 0.00e+00 for replacement
   x[x == pattern] <- "0"
 
   # Convert scientific notation into a math expression
+  # Match pattern of e + or - 0 (one or zero 0s), replace with x 10^+ or -
   x <- gsub(pattern = "e\\+0?", replacement = " %*% 10^", x)
   x <- gsub(pattern = "e\\-0?", replacement = " %*% 10^-", x)
 
-  # Add units if given
+  # Add units if given; tilde means space in math expression
   if (is.character(units)) {
     x <- paste0(x, "~", units)
   }
-
+  
+  # If the original vector had any NA values, put them back in the same locations
   if (exists('xNA')) {
-    xNA[!is.na(xNA)] <- x
+    xNA[!is.na(xNA)] <- x   # Find locations that are not NA and place x values there
     x <- xNA
   }
 
@@ -86,3 +91,5 @@ to_scientific <- function(x,
   x <- parse(text = x)
 }
 ```
+## Link to Render LaTeX expressions
+https://github.com/nschloe/purple-pi?activate
