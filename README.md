@@ -6,7 +6,7 @@ This repository contains code snippets and notes from tools I use in my PhD proj
 
 ## Included Topics
 
-* Scientific Format Function in R *(unfinished)*: Series of functions I wrote to better format ggplot axes in pretty scientific format
+* Scientific Format Function in R: Series of functions I wrote to better format ggplot axes in pretty scientific format ([description](Using-Scientific-Format-Functions.md)) ([code](Code/scientific_conversion.R))
 
 ## Git LFS
 
