@@ -41,14 +41,25 @@ to_scientific <- function(x,
   # Round all numbers to specified number of digits (not scientific format)
   x <- signif(x, digits = digits)
 
-  # Find indices for scientific format numbers
+  # Find indices for plain and scientific format numbers
   sci_idx <- which(abs(x) >= max_cut | abs(x) < min_cut)
+  plain_idx <- which(abs(x) < max_cut & abs(x) >= min_cut)
 
   # Select numbers outside of range and convert numbers into characters
   # in consistent scientific format
   # formatC converts to 0.00e+00 format; digits argument gives digits after
   # decimal
   x[sci_idx] <- formatC(x[sci_idx], format = "e", digits = digits - 1)
+
+  # Select numbers inside of range and convert numbers into characters with
+  # correct number of digits; remove trailing decimal point
+  x[plain_idx] <- formatC(
+    as.numeric(x[plain_idx]),
+    digits = digits,
+    format = "fg",
+    flag = "#"
+  )
+  x[plain_idx] <- gsub(pattern = "\\.$", replacement = "", x[plain_idx])
 
   # If all of the numbers should have a common exponential factor, find most
   # common exponential factor and apply it to all scientific format numbers
@@ -125,6 +136,9 @@ to_scientific <- function(x,
     # Match pattern of any characters at the start of the string prior to e;
     # replace with the matched characters wrapped in quotes followed by e
     x <- gsub(pattern = "(^.*)e", replacement = "'\\1'e", x)
+
+    # For plain numbers, wrap entire number in additional quotes
+    x[plain_idx] <- gsub(pattern = "(.*)", replacement = "'\\1'", x[plain_idx])
   }
 
   # Next, replace the "e+00" notation with math expression for "x 10^0"
