@@ -7,6 +7,7 @@ This repository contains code snippets and notes from tools I use in my PhD proj
 ## Included Topics
 
 * Scientific Format Function in R: Series of functions I wrote to better format ggplot axes in pretty scientific format ([description](Using-Scientific-Format-Functions.md)) ([code](Code/scientific_conversion.R))
+* Adding Mathematical Expressions to Plots *(unfinished)*: How to add and format mathematical expressions with `ggplot` and other tools ([description](Adding-Mathematical-Expressions-to-Plots.md))
 
 ## Git LFS
 
