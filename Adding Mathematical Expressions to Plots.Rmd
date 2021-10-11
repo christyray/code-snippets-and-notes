@@ -423,7 +423,7 @@ In this case, we will specify the path to the font file with the desired weight 
 
 This will change the font for the entire expression, bypassing the `plotmath` functions. (If you needed different font faces or fonts in the expression, you could register a different font file to the `bold` and `italic` arguments of `register_font()` function and then access them with `bold()` and `italic()` from `plotmath`.) 
 
-This is also only compatible with graphics devices from the `ragg` and `svglite` packages: `agg_png()`, `agg_jpeg()`, `agg_tiff()`, and `svglite()`. This will not work on Greek letters or some other symbols - those are set with the system default "Symbol" font, and that font cannot be changed with the `ragg` device. 
+This is also only compatible with graphics devices from the `ragg` and `svglite` packages: `agg_png()`, `agg_jpeg()`, `agg_tiff()`, and `svglite()`. This will not work on Greek letters or some other symbols - those are set with the system default "Symbol" font, and that font cannot be changed with the `ragg` device. This will be fixed in a later release of `ragg`, and the user will be able to use `register_font()` to set an alternate font to the `symbol` name ([source](https://github.com/r-lib/ragg/issues/90)).
 
 ```{r, register-font}
 library("systemfonts")
@@ -468,7 +468,7 @@ ggsave(
 
 With the release of R 4.0.0, the default `x11()`, `png()`, `jpeg()`, `tiff()`, `bmp()`, `svg()`, `cairo_pdf()`, and `cairo_ps()` devices accept a `symbolfamily` argument to let the user change the font used for symbols in an image ([source](https://developer.r-project.org/Blog/public/2020/04/17/changes-to-symbol-fonts-for-cairo-graphics-devices/index.html)).
 
-The `ragg` package uses the system default "Symbol" font and does not accept alternate fonts. 
+The `ragg` package uses the system default "Symbol" font and does not accept alternate fonts. (This will be fixed in a later release - see [above](#font-face).)
 
 ```{r, symbol}
 greek <- as.data.frame(c("alpha", "beta", "gamma"))

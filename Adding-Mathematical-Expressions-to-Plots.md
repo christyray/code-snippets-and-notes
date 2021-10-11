@@ -1,7 +1,7 @@
 Adding Mathematical Expressions to R Graphics
 ================
 Christy Pickering
-2021-08-27
+2021-10-11
 
 -   [Functions for Creating
     Expressions](#functions-for-creating-expressions)
@@ -562,7 +562,10 @@ This is also only compatible with graphics devices from the `ragg` and
 `svglite` packages: `agg_png()`, `agg_jpeg()`, `agg_tiff()`, and
 `svglite()`. This will not work on Greek letters or some other symbols -
 those are set with the system default “Symbol” font, and that font
-cannot be changed with the `ragg` device.
+cannot be changed with the `ragg` device. This will be fixed in a later
+release of `ragg`, and the user will be able to use `register_font()` to
+set an alternate font to the `symbol` name
+([source](https://github.com/r-lib/ragg/issues/90)).
 
 ``` r
 library("systemfonts")
@@ -612,7 +615,8 @@ for symbols in an image
 ([source](https://developer.r-project.org/Blog/public/2020/04/17/changes-to-symbol-fonts-for-cairo-graphics-devices/index.html)).
 
 The `ragg` package uses the system default “Symbol” font and does not
-accept alternate fonts.
+accept alternate fonts. (This will be fixed in a later release - see
+[above](#font-face).)
 
 ``` r
 greek <- as.data.frame(c("alpha", "beta", "gamma"))
