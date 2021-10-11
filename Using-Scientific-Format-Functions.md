@@ -1,13 +1,13 @@
 Using Scientific Format Functions
 ================
 Christy Pickering
-2021-08-10
+2021-10-11
 
-  - [`to_scientific()` Function](#to_scientific-function)
-  - [`label_scientific()` Function](#label_scientific-function)
-  - [`signif_custom()` Function](#signif_custom-function)
-  - [Examples](#examples)
-  - [References and Resources](#references-and-resources)
+-   [`to_scientific()` Function](#to_scientific-function)
+-   [`label_scientific()` Function](#label_scientific-function)
+-   [`signif_custom()` Function](#signif_custom-function)
+-   [Examples](#examples)
+-   [References and Resources](#references-and-resources)
 
 Here I discuss three functions I wrote to convert numbers to
 customizable scientific format for ggplot axis labels, annotations,
@@ -24,26 +24,26 @@ the `ggplot` scale function labels to scientific format.
 
 ## Inputs
 
-  - `x` = the number or vector of numbers to be converted into
+-   `x` = the number or vector of numbers to be converted into
     scientific format
-  - `digits` = the number of significant figures to display in the
+-   `digits` = the number of significant figures to display in the
     converted output
-  - `max_cut` = above this number, values will be converted into
+-   `max_cut` = above this number, values will be converted into
     scientific format (inclusive)
-  - `min_cut` = below this number, values will be converted into
+-   `min_cut` = below this number, values will be converted into
     scientific format (exclusive)
-  - `common` = specifies if scientific format numbers should share a
+-   `common` = specifies if scientific format numbers should share a
     common exponential factor
-  - `factor` = provides a value for the common exponential factor; if
+-   `factor` = provides a value for the common exponential factor; if
     `NULL`, the most occurring exponent will be used
-  - `trailing` = specifies if trailing zeros should be included
-  - `units` = if specified, adds units to the converted output
+-   `trailing` = specifies if trailing zeros should be included
+-   `units` = if specified, adds units to the converted output
 
 ## Output
 
-  - Outputs numbers between `min_cut` and `max_cut` as expressions of
+-   Outputs numbers between `min_cut` and `max_cut` as expressions of
     plain numbers, with `units` if given
-  - Outputs numbers less than `min_cut` or greater than `max_cut` as
+-   Outputs numbers less than `min_cut` or greater than `max_cut` as
     expressions with numbers in scientific format, with `units` if given
 
 Outputs are formatted as expressions because R or `ggplot` can parse the
@@ -53,8 +53,8 @@ because `ggplot` often uses `NA` when the axis limits are not specified.
 ## Notes
 
 Inputs are rounded before checking if they are in the range for
-conversion to scientific format; e.g., \(99999\) will be rounded to
-\(1 \times 10^5\), so if the cutoff is \(1 \times 10^5\), it will get
+conversion to scientific format; e.g., 99999 will be rounded to
+1 × 10<sup>5</sup>, so if the cutoff is 1 × 10<sup>5</sup>, it will get
 converted to scientific format.
 
 The `common` argument specifies if the scientific format numbers should
@@ -62,7 +62,7 @@ share a common exponential factor. If `factor` is provided, it will be
 used for the shared factor. Otherwise, the function selects the most
 commonly occurring exponential factor to use as the shared factor; if
 multiple factors occur equally, it selects the largest. This should only
-be used if the numbers are within \(10^4\) of each other.
+be used if the numbers are within 10<sup>4</sup> of each other.
 
 ## Function Code
 
@@ -228,7 +228,7 @@ for the labels argument.
 This works because of the “lexical scoping” of R functions - if a value
 is not defined inside the function, R looks “one level up” until it
 reaches the global environment. Since x does not have a value inside the
-label\_scientific() function, it looks outside the function for a value,
+label_scientific() function, it looks outside the function for a value,
 and it is provided breaks as input by the scale function.
 
 This setup is based on the [`label_scientific()`
@@ -237,24 +237,24 @@ in the [`scales` package](https://scales.r-lib.org/reference/index.html)
 
 ## Inputs
 
-  - `digits` = the number of significant figures to display in the
+-   `digits` = the number of significant figures to display in the
     converted output
-  - `max_cut` = above this number, values will be converted into
+-   `max_cut` = above this number, values will be converted into
     scientific format (inclusive)
-  - `min_cut` = below this number, values will be converted into
+-   `min_cut` = below this number, values will be converted into
     scientific format (exclusive)
-  - `common` = specifies if scientific format numbers should share a
+-   `common` = specifies if scientific format numbers should share a
     common exponential factor
-  - `factor` = provides a value for the common exponential factor; if
+-   `factor` = provides a value for the common exponential factor; if
     `NULL`, the most occurring exponent will be used
-  - `trailing` = specifies if trailing zeros should be included
-  - `units` = if specified, adds units to the converted output
+-   `trailing` = specifies if trailing zeros should be included
+-   `units` = if specified, adds units to the converted output
 
 ## Output
 
-  - Outputs numbers between `min_cut` and `max_cut` as expressions of
+-   Outputs numbers between `min_cut` and `max_cut` as expressions of
     plain numbers, with `units` if given
-  - Outputs numbers less than `min_cut` or greater than `max_cut` as
+-   Outputs numbers less than `min_cut` or greater than `max_cut` as
     expressions with numbers in scientific format, with `units` if given
 
 ## Function Code
@@ -297,15 +297,15 @@ specified number of significant digits, but to specifically have
 
 ## Inputs
 
-  - `x` = the number or vector of numbers to be rounded to set
+-   `x` = the number or vector of numbers to be rounded to set
     significant figures
-  - `digits` = the number of significant figures to round to
-  - `option` = the specific rounding function to apply; can use
+-   `digits` = the number of significant figures to round to
+-   `option` = the specific rounding function to apply; can use
     `ceiling`, `floor`, `trunc`, or `round`
 
 ## Output
 
-  - Outputs numbers rounded to the specified number of `digits`, using
+-   Outputs numbers rounded to the specified number of `digits`, using
     the function given by `option`
 
 ## Function Code
@@ -349,15 +349,15 @@ signif_custom <- function(x, digits = 1, option = ceiling) {
 The `to_scientific()` function takes input of a number or vector of
 numbers and returns those numbers as expressions in scientific notation.
 
-The default arguments of the `to_scientific()` function are `digits
-= 2`, `max_cut = 10^5`, `min_cut = 10^-3`, `common = FALSE`, `factor =
-NULL`, `trailing = TRUE`, and `units = NULL`. `max_cut` is inclusive,
-and `min_cut` is exclusive.
+The default arguments of the `to_scientific()` function are
+`digits = 2`, `max_cut = 10^5`, `min_cut = 10^-3`, `common = FALSE`,
+`factor = NULL`, `trailing = TRUE`, and `units = NULL`. `max_cut` is
+inclusive, and `min_cut` is exclusive.
 
 The numbers are rounded prior to checking if they fit within the
-provided `max_cut` and `min_cut` ranges. In the example below, \(99999\)
-is rounded to \(100000\), which is equal to `max_cut` and will be
-converted to scientific notation.
+provided `max_cut` and `min_cut` ranges. In the example below, 99999 is
+rounded to 100000, which is equal to `max_cut` and will be converted to
+scientific notation.
 
 `NAs` are preserved by `to_scientific()` because they are used by
 `ggplot` when the axis limits are not specified.
@@ -379,9 +379,9 @@ displayed in the converted numbers.
 
 When `common` = TRUE, `digits` specifies the total number of digits,
 which may not all be significant figures (e.g., if `digits = 3` and
-`common = TRUE`, \(0.2478\) would be reported as \(0.25\) instead of
-\(0.248\)). This is done to maintain consistency across all numbers when
-there is a common exponential factor.
+`common = TRUE`, 0.2478 would be reported as 0.25 instead of 0.248).
+This is done to maintain consistency across all numbers when there is a
+common exponential factor.
 
 ``` r
 x <- c(
@@ -398,7 +398,7 @@ to_scientific(x, digits = 4)
 The `max_cut` (inclusive) and `min_cut` (exclusive) arguments give the
 range of numbers that will not be converted to scientific notation.
 
-\(0\) will always be reported as \(0\) regardless of the range set with
+0 will always be reported as 0 regardless of the range set with
 `max_cut` and `min_cut`.
 
 ``` r
@@ -475,14 +475,15 @@ formation dependent on the antibody concentration and the rate of the
 initial binding step (to form a binary complex).
 
 The first few rows of the `ternary` data set are shown below. The `kon`
-and `Ab` columns give the \(\log_{10}()\) of the data – we will correct
-the x and y axes to display this correctly with the `scales` package.
+and `Ab` columns give the log<sub>10</sub>() of the data – we will
+correct the x and y axes to display this correctly with the `scales`
+package.
 
 ``` r
 head(ternary)
 ```
 
-    ## # A tibble: 6 x 3
+    ## # A tibble: 6 × 3
     ##     kon    Ab    Max
     ##   <dbl> <dbl>  <dbl>
     ## 1    -7  -6   16512.
@@ -577,10 +578,10 @@ sci_plot
 <img src="Figures/Scientific-Format/sci-plot-1.svg" width="80%" />
 
 Initially, calling `label_scientific()` changed nothing about the heat
-map legend – why? Because the default value for `max_cut` is \(10^5\),
-so none of the values on the plot were large enough to be converted to
-scientific notation. We can change this by specifying a lower cutoff for
-`max_cut`.
+map legend – why? Because the default value for `max_cut` is
+10<sup>5</sup>, so none of the values on the plot were large enough to
+be converted to scientific notation. We can change this by specifying a
+lower cutoff for `max_cut`.
 
 ``` r
 sci_plot2 <- ggplot(ternary, aes(x = Ab, y = kon, fill = Max)) +
@@ -663,9 +664,9 @@ largest one for the common factor.
 
 When `common` = TRUE, the `digits` argument specifies the total number
 of digits, which may not all be significant figures. In this figure,
-`digits = 3`, so \(1\) is reported as \(1.00\), but \(0.25\) is reported
-as \(0.25\) instead of \(0.250\). This is done to maintain consistency
-across all numbers when there is a common exponential factor.
+`digits = 3`, so 1 is reported as 1.00, but 0.25 is reported as 0.25
+instead of 0.250. This is done to maintain consistency across all
+numbers when there is a common exponential factor.
 
 ``` r
 sci_plot4 <- ggplot(ternary, aes(x = Ab, y = kon, fill = Max)) +
@@ -733,11 +734,11 @@ signif_custom(x, digits = 2, option = floor)
 
 # References and Resources
 
-  - [Regex
+-   [Regex
     patterns](https://github.com/rstudio/cheatsheets/raw/master/strings.pdf)
-  - [`gsub` and how to keep part of a matching
+-   [`gsub` and how to keep part of a matching
     pattern](https://stackoverflow.com/questions/37425019/gsub-only-part-of-pattern)
-  - [Keep trailing zeros in math
+-   [Keep trailing zeros in math
     expression](https://stackoverflow.com/questions/15397789/keeping-trailing-zeroes-with-plotmath)
-  - [Lexical scoping in R
+-   [Lexical scoping in R
     functions](https://adv-r.hadley.nz/functions.html#lexical-scoping)
