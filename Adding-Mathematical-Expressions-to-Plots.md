@@ -1,7 +1,7 @@
 Adding Mathematical Expressions to R Graphics
 ================
-Christy Pickering
-2021-10-11
+Christy Ray
+2021-11-18
 
 -   [Functions for Creating
     Expressions](#functions-for-creating-expressions)
@@ -572,7 +572,7 @@ library("systemfonts")
 
 register_font(
   name = "Roboto Math", 
-  plain = "/Users/christypickering/Library/Fonts/Roboto-BlackItalic.ttf",
+  plain = "/Users/christyray/Library/Fonts/Roboto-BlackItalic.ttf",
   features = font_feature(
     ligatures = "standard",
     numbers = "tabular"

@@ -1,6 +1,6 @@
 ---
 title: "Adding Mathematical Expressions to R Graphics"
-author: "Christy Pickering"
+author: "Christy Ray"
 date: "`r format(Sys.Date())`"
 output:
   github_document:
@@ -430,7 +430,7 @@ library("systemfonts")
 
 register_font(
   name = "Roboto Math", 
-  plain = "/Users/christypickering/Library/Fonts/Roboto-BlackItalic.ttf",
+  plain = "/Users/christyray/Library/Fonts/Roboto-BlackItalic.ttf",
   features = font_feature(
     ligatures = "standard",
     numbers = "tabular"
