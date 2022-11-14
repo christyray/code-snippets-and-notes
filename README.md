@@ -1,6 +1,6 @@
 # Code Snippets and Notes
 
-Christy Pickering, Mac Gabhann Lab
+Christy Ray, Mac Gabhann Lab
 
 This repository contains code snippets and notes from tools I use in my PhD project. I decided to start writing notes when I learned how to do something helpful so I wouldn't have to keep relearning the same tricks.
 
@@ -8,6 +8,7 @@ This repository contains code snippets and notes from tools I use in my PhD proj
 
 * Scientific Format Function in R: Series of functions I wrote to better format ggplot axes in pretty scientific format ([description](Using-Scientific-Format-Functions.md)) ([function code](Code/scientific_conversion.R))
 * Adding Mathematical Expressions to Plots: How to add and format mathematical expressions with `ggplot` and other tools ([description](Adding-Mathematical-Expressions-to-Plots.md))
+* Displaying a Progress Table in a Parfor Loop: An example `parfor` loop with a table displaying the progress through the loop iterations and the code execution time ([description](Display-Parfor-Loop-Progress.md)) ([function code](Code/parfor_progress.m))
 
 ## Git LFS
 
